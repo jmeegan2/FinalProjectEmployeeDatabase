@@ -12,9 +12,9 @@ class Employee
 {
     int id;
     char firstName[20], lastName[20];
-    char socialSecurityNumber[11];
-    float salary;
-    int age;
+    char socialSecurityNumber[11];      //Still only allowing me to put in a ssd: xxx-xxx , but i want xxx-xxx-xxxx
+    float salary;           //Don't think this allows for commas to be entered when giving salary for example
+    int age;                  //do 35000 instead of 35,000
 
 public:
     void getdata(int i)
@@ -27,7 +27,7 @@ public:
         cin >> lastName;
         do {
             cout << "social Security Number (only enter 6 digit number 111-111): ";
-            cin >> socialSecurityNumber; //at the present moment its only accepting social security numbers that are 6 digits 111-111 would be an example
+            cin >> socialSecurityNumber; //at the present moment its only accepting social security numbers that are 6 digits xxx-xxx would be an example
         } while (strchr(socialSecurityNumber, '-') == NULL);
 
         cout << "salary: ";
@@ -72,8 +72,10 @@ int main()
     char ssn[11];
     while (!flag)
     {
-        cout << "Enter 1. Add record\n\t2.Delete Record\n\t3. search Record by id\n\t4.Display records\n\t5.Exit\n\t6. search Record by SSN" << endl;
-        cout << "Enter choice: ";
+
+        cout << "Select  1. Add record\n\t2. Delete Record\n\t3. Search Record by ID\n\t4. Display records\n\t5. Exit\n\t6. Search Record by SSN" << endl;
+        
+        cout << "\nEnter choice: ";
         cin >> ch;//read choice
         switch (ch)
         {
