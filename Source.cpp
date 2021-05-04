@@ -26,8 +26,8 @@ public:
         cout << "Last Name: ";
         cin >> lastName;
         do {
-            cout << "social Security Number: ";
-            cin >> socialSecurityNumber;
+            cout << "social Security Number (only enter 6 digit number 111-111): ";
+            cin >> socialSecurityNumber; //at the present moment its only accepting social security numbers that are 6 digits 111-111 would be an example
         } while (strchr(socialSecurityNumber, '-') == NULL);
 
         cout << "salary: ";
