@@ -172,7 +172,7 @@ bool searchbyID(fstream& fio, int id)//search by Employee id
     }
     return false;
 }
-bool deleteRecord(fstream& fio, char ssn[])
+bool deleteRecord(fstream& fio, char ssn[])                //this section does not seem to be working as of 5/5
 {
     //search record in file
     int pos;
@@ -183,7 +183,8 @@ bool deleteRecord(fstream& fio, char ssn[])
         fio.read((char*)&emp1, sizeof(emp1));//read record from file
         if (strncmp(emp1.getSSN(), ssn, 2) == 0)
         {
-            emp1.printData();//print founded record          
+            emp1.printData();//print founded record   
+            cout << "Employee record found" << endl;
             fio.seekg(pos);
             fio.write((char*)&emp1, sizeof(emp1)) << "";
             return true;//and return true is deleded
