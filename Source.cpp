@@ -30,7 +30,7 @@ public:
             cin >> socialSecurityNumber; //at the present moment its only accepting social security numbers that are 6 digits xxx-xxx would be an example
         } while (strchr(socialSecurityNumber, '-') == NULL);
 
-        cout << "Salary: ";
+        cout << "Salary (no comma needed): ";
         cin >> salary;
         cout << "Age: ";
         cin >> age;
@@ -64,7 +64,7 @@ int main()
 {
 
     int count = 0;
-    fstream fio("employeeInfo.dat", ios::in | ios::out);
+    fstream employeeInfo("employeeInfo.dat", ios::in | ios::out);
     char ans = 'y';
     int ch;
     bool flag = false;
@@ -80,13 +80,13 @@ int main()
         switch (ch)
         {
         case 1://add record into file
-            addRecord(fio, count);
+            addRecord(employeeInfo, count);
             count++;//adding index
             break;
         case 2:
             cout << "Enter a social security number for delete record: ";
             cin >> ssn;   //read sn for delete record          
-            if (deleteRecord(fio, ssn) == false)
+            if (deleteRecord(employeeInfo, ssn) == false)
             {
                 cout << "\nRecord not found in the file..!!\n";
                 cout << "Press any key to exit...\n";
@@ -96,7 +96,7 @@ int main()
         case 3:
             cout << "Enter a employee ID for searching: ";
             cin >> id;//read employee id for search   record in file          
-            if (searchbyID(fio, id) == false)
+            if (searchbyID(employeeInfo, id) == false)
             {
                 cout << "\nRecord not found in the file..!!\n";
                 cout << "Press any key to exit...\n";
@@ -107,7 +107,7 @@ int main()
 
             cout << "Enter a social security number: ";
             cin >> ssn;//read social security number for search   record in file                      
-            if (searchbySSN(fio, ssn) == false)
+            if (searchbySSN(employeeInfo, ssn) == false)
             {
                 cout << "\nRecord not found in the file..!!\n";
                 cout << "Press any key to exit...\n";
@@ -115,7 +115,7 @@ int main()
             }
             break;
         case 4:
-            display(fio);//display emlpoyees information
+            display(employeeInfo);//display emlpoyees information
             break;
         case 5:
             flag = true;//set flag to true to exit
@@ -125,7 +125,7 @@ int main()
 
         }
     }
-    fio.close();
+    employeeInfo.close();
     return 0;
 }
 void addRecord(fstream& fio, int count)
