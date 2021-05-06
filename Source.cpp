@@ -192,6 +192,8 @@ bool deleteRecord(fstream& fio, char ssn[])                //this section does n
     }
     return false;
 }
+//This is where the file records display is 
+
 void display(fstream& fio)
 {
     fio.seekg(0);
