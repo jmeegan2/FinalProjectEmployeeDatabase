@@ -115,7 +115,7 @@ int main()
             }
             break;
         case 4:
-            display(fio);//display emlpoyees information
+            display(fio);//display emlpoyees information        //this section is not working at all
             break;
         case 5:
             flag = true;//set flag to true to exit
@@ -192,7 +192,7 @@ bool deleteRecord(fstream& fio, char ssn[])                //this section does n
     }
     return false;
 }
-//This is where the file records display is 
+//This is where the file records display is  , maybe not so sure ill make a post tmrw asking for help
 
 void display(fstream& fio)
 {
