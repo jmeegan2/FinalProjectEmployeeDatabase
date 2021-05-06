@@ -30,7 +30,7 @@ public:
             cin >> socialSecurityNumber; //at the present moment its only accepting social security numbers that are 6 digits xxx-xxx would be an example
         } while (strchr(socialSecurityNumber, '-') == NULL);
 
-        cout << "Salary: ";
+        cout << "Salary (no comma needed): ";
         cin >> salary;
         cout << "Age: ";
         cin >> age;
