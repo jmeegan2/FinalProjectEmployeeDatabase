@@ -1,5 +1,7 @@
-//James Meeagn Employee Data Base
+//Employee Data Base
 
+// ATTENTION: As of right now i cant seem to get option 2 delete record and i can not get option 4 display records to work
+// Options 1, 3, 5, 6 all seem to be working fine
 
 #include<fstream>
 #include<stdlib.h>
@@ -13,7 +15,7 @@ class Employee
     int id;
     char firstName[20], lastName[20];
     char socialSecurityNumber[11];      //xxx-xxx-xxxx
-    float salary;           //Don't think this allows for commas to be entered when giving salary for example
+    float salary;           //Doesn't allow for commas to be entered when giving salary for example
     int age;                //do 35000 instead of 35,000
 
 public:
@@ -27,7 +29,7 @@ public:
         cin >> lastName;
         do {
             cout << "social Security Number (Enter in this format xxx-xxx-xxxx): ";
-            cin >> socialSecurityNumber; //at the present moment its only accepting social security numbers that are 6 digits xxx-xxx would be an example
+            cin >> socialSecurityNumber; // Enter in format xxx-xxx-xxxx
         } while (strchr(socialSecurityNumber, '-') == NULL);
 
         cout << "Salary (no comma needed): ";
@@ -73,7 +75,7 @@ int main()
     while (!flag)
     {
 
-        cout << "Select  1. Add record\n\t2. Delete Record\n\t3. Search Record by ID\n\t4. Display records\n\t5. Exit\n\t6. Search Record by SSN" << endl;
+        cout << "Select  1. Add record\n\t2. Delete Record\n\t3. Search Record by ID\n\t4. Display records\n\t5. Exit\n\t6. Search Record by SSN (Enter in this format xxx-xxx-xxxx)" << endl;
         
         cout << "\nEnter choice: ";
         cin >> ch;//read choice
@@ -84,7 +86,7 @@ int main()
             count++;//adding index
             break;
         case 2:
-            cout << "Enter a social security number for delete record: ";
+            cout << "Enter a social security number for delete record: (Enter in this format xxx-xxx-xxxx)";
             cin >> ssn;   //read sn for delete record          
             if (deleteRecord(fio, ssn) == false)
             {
@@ -105,7 +107,7 @@ int main()
             break;
         case 6:
 
-            cout << "Enter a social security number: ";
+            cout << "Enter a social security number (Enter in this format xxx-xxx-xxxx): ";
             cin >> ssn;//read social security number for search   record in file                      
             if (searchbySSN(fio, ssn) == false)
             {
@@ -192,7 +194,7 @@ bool deleteRecord(fstream& fio, char ssn[])                //this section does n
     }
     return false;
 }
-//This is where the file records display is  , maybe not so sure ill make a post tmrw asking for help
+
 
 void display(fstream& fio)
 {
