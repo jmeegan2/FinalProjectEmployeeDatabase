@@ -94,13 +94,7 @@ int main()
             cout << "Enter a social security number for delete record (Enter in this format xxx-xxx-xxxx): ";
             cin >> ssn;   //read sn for delete record
             deleteRecord(fio, ssn);
-            //if (deleteRecord(fio, ssn) == false)
-            //{
-               // cout << "\nRecord not found in the file..!!\n";
-              //  cout << "Press any key to exit...\n";
-             //   exit(2);
-            //}
-            //fio.close();
+           
             break;
         case 3:
             fio.open("employeeInfo.dat", ios::in | ios::out | ios::app);
