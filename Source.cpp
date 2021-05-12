@@ -53,22 +53,23 @@ public:
         return socialSecurityNumber;
     }
 
-}emp1, emp;
+}emp1, emp; //Employee Management system using C++ program uses EmpID 
+            //as unique identifier (i.e. primary key) to recognize employee.
 
 
-void addRecord(fstream& fio, int count);
-bool searchbyID(fstream& fio, int id);
-bool searchbySSN(fstream& fio, char ssn[]);
-bool deleteRecord(fstream& fio, char ssn[]);
-void display(fstream& fio);
+void addRecord(fstream& file, int count);
+bool searchbyID(fstream& file, int id);
+bool searchbySSN(fstream& file, char ssn[]);
+bool deleteRecord(fstream& file, char ssn[]);
+void display(fstream& file);
 int main()
 {
 
     int count = 0;
-    //fstream fio("employeeInfo.dat", ios::in | ios::out | ios::app);
-    fstream fio;
-    fio.open("employeeInfo.dat", ios::out); //this is only to create a new file, if you want append operation remove this
-    fio.close();// this is for same reason as above
+   
+    fstream file;
+    file.open("employeeInfo.dat", ios::out); //this is only to create a new file, if you want append operation remove this
+    file.close();// this is for same reason as above
     char ans = 'y';
     int ch;
     bool flag = false;
@@ -84,46 +85,46 @@ int main()
         switch (ch)
         {
         case 1:
-            fio.open("employeeInfo.dat", ios::in | ios::out | ios::app);//add record into file
-            addRecord(fio, count);
+            file.open("employeeInfo.dat", ios::in | ios::out | ios::app);//add record into file
+            addRecord(file, count);
             count++;//adding index
-            fio.close();
+            file.close();
             break;
         case 2:
-            fio.open("employeeInfo.dat", ios::in | ios::out | ios::app);
+            file.open("employeeInfo.dat", ios::in | ios::out | ios::app);
             cout << "Enter a social security number for delete record (Enter in this format xxx-xxx-xxxx): ";
             cin >> ssn;   //read sn for delete record
-            deleteRecord(fio, ssn);
+            deleteRecord(file, ssn);
            
             break;
         case 3:
-            fio.open("employeeInfo.dat", ios::in | ios::out | ios::app);
+            file.open("employeeInfo.dat", ios::in | ios::out | ios::app);
             cout << "Enter a employee ID for searching: ";
             cin >> id;//read employee id for search   record in file
-            if (searchbyID(fio, id) == false)
+            if (searchbyID(file, id) == false)
             {
                 cout << "\nRecord not found in the file..!!\n";
                 cout << "Press any key to exit...\n";
                 exit(2);
             }
-            fio.close();
+            file.close();
             break;
         case 6:
-            fio.open("employeeInfo.dat", ios::in | ios::out | ios::app);
+            file.open("employeeInfo.dat", ios::in | ios::out | ios::app);
             cout << "Enter a social security number (Enter in this format xxx-xxx-xxxx): ";
             cin >> ssn;//read social security number for search   record in file
-            if (searchbySSN(fio, ssn) == false)
+            if (searchbySSN(file, ssn) == false)
             {
                 cout << "\nRecord not found in the file..!!\n";
                 cout << "Press any key to exit...\n";
                 exit(2);
             }
-            fio.close();
+            file.close();
             break;
         case 4:
-            fio.open("employeeInfo.dat", ios::in | ios::out | ios::app);
-            display(fio);//display emlpoyees information        //this section is not working at all
-            fio.close();
+            file.open("employeeInfo.dat", ios::in | ios::out | ios::app);
+            display(file);//display emlpoyees information      
+            file.close();
             break;
         case 5:
             flag = true;//set flag to true to exit
@@ -161,26 +162,26 @@ bool searchbySSN(fstream& fio, char ssn[])//search by employee social Security N
     }
     return false;//return false if not found in the list
 }
-bool searchbyID(fstream& fio, int id)//search by Employee id
+bool searchbyID(fstream& file, int id)//search by Employee id
 {
     //search record in file
     int pos;
-    fio.seekg(0);
-    while (!fio.eof())
+    file.seekg(0);
+    while (!file.eof())
     {
-        pos = fio.tellg();//get positon of cursur
-        fio.read((char*)&emp1, sizeof(emp1));//read record from file
+        pos = file.tellg();//get positon of cursur
+        file.read((char*)&emp1, sizeof(emp1));//read record from file
         if (emp1.getID() == id)//campare id with emp1 id
         {
             emp1.printData();//print founded record
-            fio.seekg(pos);
-            fio.write((char*)&emp1, sizeof(emp1));
+            file.seekg(pos);
+            file.write((char*)&emp1, sizeof(emp1));
             return true;//and return true is found
         }
     }
     return false;
 }
-bool deleteRecord(fstream& fio, char ssn[])                
+bool deleteRecord(fstream& file, char ssn[])                
 {
     
 
@@ -189,12 +190,12 @@ bool deleteRecord(fstream& fio, char ssn[])
     ofstream ofs;
     ofs.open("temp.dat", ios::out | ios::binary);
 
-    while (!fio.eof()) {
+    while (!file.eof()) {
 
-        fio.read((char*)&emp1, sizeof(emp1));
+        file.read((char*)&emp1, sizeof(emp1));
 
         // if(ifs)checks the buffer record in the file
-        if (fio) {
+        if (file) {
 
             // comparing the roll no with
             // roll no of record to be deleted
@@ -210,7 +211,7 @@ bool deleteRecord(fstream& fio, char ssn[])
     }
 
     ofs.close();
-    fio.close();
+    file.close();
 
     // delete the old file
     remove("employeeInfo.dat");
@@ -226,17 +227,17 @@ bool deleteRecord(fstream& fio, char ssn[])
 }
 
 
-void display(fstream& fio)
+void display(fstream& file)
 {
-    fio.seekg(0);
+    file.seekg(0);
     cout << "Now the file contains:\n";
-    fio.read((char*)&emp, sizeof(emp));
-    while (!fio.eof())
+    file.read((char*)&emp, sizeof(emp));
+    while (!file.eof())
     {
         //fio.read((char*)&emp, sizeof(emp));//read record from file to emp
         //if (fio.eof())
             //break;
         emp.printData();//print data of each employee
-        fio.read((char*)&emp, sizeof(emp));
+        file.read((char*)&emp, sizeof(emp));
     }
 }
