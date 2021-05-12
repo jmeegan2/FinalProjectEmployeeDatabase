@@ -150,9 +150,9 @@ bool searchbySSN(fstream& fio, char ssn[])//search by employee social Security N
     fio.seekg(0);
     while (!fio.eof())
     {
-        pos = fio.tellg();//get positon of cursur
+        pos = fio.tellg();//get positon of cursor
         fio.read((char*)&emp1, sizeof(emp1));//read record from file
-        if (strncmp(emp1.getSSN(), ssn, 3) == 0)//campare ssn with emp1 ssn
+        if (strncmp(emp1.getSSN(), ssn, 3) == 0)//compare ssn with emp1 ssn
         {
             emp1.printData();//print data
             fio.seekg(pos);
@@ -234,9 +234,8 @@ void display(fstream& file)
     file.read((char*)&emp, sizeof(emp));
     while (!file.eof())
     {
-        //fio.read((char*)&emp, sizeof(emp));//read record from file to emp
-        //if (fio.eof())
-            //break;
+
+
         emp.printData();//print data of each employee
         file.read((char*)&emp, sizeof(emp));
     }
