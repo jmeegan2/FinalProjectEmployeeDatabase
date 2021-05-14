@@ -68,17 +68,17 @@ int main()
     int count = 0;
    
     fstream file;
-    file.open("employeeInfo.dat", ios::out); //this is only to create a new file, if you want append operation remove this
-    file.close();// this is for same reason as above
+    file.open("employeeInfo.dat", ios::out); 
+    file.close();
     char ans = 'y';
     int ch;
     bool flag = false;
-    int id;
+    int ID;
     char ssn[11];
     while (!flag)
     {
 
-        cout << "Select  1. Add record\n\t2. Delete Record\n\t3. Search Record by ID\n\t4. Display records\n\t5. Exit\n\t6. Search Record by SSN (Enter in this format xxx-xxx-xxxx)" << endl;
+        cout << "Select  \n\t1. Add record\n\t2. Delete Record\n\t3. Search Record by ID\n\t4. Display records\n\t5. Search Record by SSN (Enter in this format xxx-xxx-xxxx)\n\t6. Exit" << endl;
 
         cout << "\nEnter choice: ";
         cin >> ch;//read choice
@@ -100,8 +100,8 @@ int main()
         case 3:
             file.open("employeeInfo.dat", ios::in | ios::out | ios::app);
             cout << "Enter a employee ID for searching: ";
-            cin >> id;//read employee id for search   record in file
-            if (searchbyID(file, id) == false)
+            cin >> ID;//read employee id for search   record in file
+            if (searchbyID(file, ID) == false)
             {
                 cout << "\nRecord not found in the file..!!\n";
                 cout << "Press any key to exit...\n";
@@ -109,7 +109,7 @@ int main()
             }
             file.close();
             break;
-        case 6:
+        case 5:
             file.open("employeeInfo.dat", ios::in | ios::out | ios::app);
             cout << "Enter a social security number (Enter in this format xxx-xxx-xxxx): ";
             cin >> ssn;//read social security number for search   record in file
@@ -126,7 +126,7 @@ int main()
             display(file);//display emlpoyees information      
             file.close();
             break;
-        case 5:
+        case 6:
             flag = true;//set flag to true to exit
             break;
         default:
