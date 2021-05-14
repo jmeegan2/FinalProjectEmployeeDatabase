@@ -1,5 +1,4 @@
 //Employee Data Base
-// Finished on 5/10 
 #pragma warning(disable :4716)
 #include<fstream>
 #include<stdlib.h>
@@ -13,7 +12,7 @@ class Employee
 {
     int id;
     char firstName[20], lastName[20];
-    char socialSecurityNumber[11];      //xxx-xxx-xxxx
+    char socialSecurityNumber[11];      //xxx-xx-xxxx
     float salary;           //Doesn't allow for commas to be entered when giving salary for example
     int age;                //do 35000 instead of 35,000
 
@@ -27,8 +26,8 @@ public:
         cout << "Last Name: ";
         cin >> lastName;
         do {
-            cout << "social Security Number (Enter in this format xxx-xxx-xxxx): ";
-            cin >> socialSecurityNumber; // Enter in format xxx-xxx-xxxx
+            cout << "social Security Number (Enter in this format xxx-xx-xxxx): ";
+            cin >> socialSecurityNumber; // Enter in format xxx-xx-xxxx
         } while (strchr(socialSecurityNumber, '-') == NULL);
 
         cout << "Salary (no comma needed): ";
@@ -78,7 +77,7 @@ int main()
     while (!flag)
     {
 
-        cout << "Select  \n\t1. Add record\n\t2. Delete Record\n\t3. Search Record by ID\n\t4. Display records\n\t5. Search Record by SSN (Enter in this format xxx-xxx-xxxx)\n\t6. Exit" << endl;
+        cout << "Select  \n\t1. Add record\n\t2. Delete Record\n\t3. Search Record by ID\n\t4. Display records\n\t5. Search Record by SSN (Enter in this format xxx-xx-xxxx)\n\t6. Exit" << endl;
 
         cout << "\nEnter choice: ";
         cin >> ch;//read choice
@@ -92,7 +91,7 @@ int main()
             break;
         case 2:
             file.open("employeeInfo.dat", ios::in | ios::out | ios::app);
-            cout << "Enter a social security number for delete record (Enter in this format xxx-xxx-xxxx): ";
+            cout << "Enter a social security number for delete record (Enter in this format xxx-xx-xxxx): ";
             cin >> ssn;   //read sn for delete record
             deleteRecord(file, ssn);
            
@@ -111,7 +110,7 @@ int main()
             break;
         case 5:
             file.open("employeeInfo.dat", ios::in | ios::out | ios::app);
-            cout << "Enter a social security number (Enter in this format xxx-xxx-xxxx): ";
+            cout << "Enter a social security number (Enter in this format xxx-xx-xxxx): ";
             cin >> ssn;//read social security number for search   record in file
             if (searchbySSN(file, ssn) == false)
             {
